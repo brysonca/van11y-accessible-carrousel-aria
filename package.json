@@ -17,13 +17,11 @@
     "build": "gulp",
     "build:es5": "gulp es5"
   },
-  "author":
-   {
-      "name": "Nicolas Hoffmann",
-      "email": "dante3333@gmail.com",
-      "web": "https://www.nicolas-hoffmann.net/"
-    }
-  ,
+  "author": {
+    "name": "Nicolas Hoffmann",
+    "email": "dante3333@gmail.com",
+    "web": "https://www.nicolas-hoffmann.net/"
+  },
   "bugs": {
     "url": "https://github.com/nico3333fr/van11y-accessible-carrousel-aria/issues"
   },
@@ -36,10 +34,10 @@
   "license": "MIT",
   "homepage": "https://van11y.net/accessible-carrousel/",
   "devDependencies": {
-    "gulp": "^3.9.0",
+    "gulp": "^3.9.1",
     "gulp-babel": "^5.3.0",
+    "gulp-header": "^1.7.1",
     "gulp-rename": "^1.2.2",
-    "gulp-uglify": "^1.4.2",
-    "gulp-header": "^1.7.1"
+    "gulp-uglify": "^1.4.2"
   }
 }
