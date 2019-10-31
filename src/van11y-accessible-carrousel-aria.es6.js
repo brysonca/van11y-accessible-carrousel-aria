@@ -280,9 +280,18 @@
                 setAttributes(carrouselControlList, {
                     [ATTR_ROLE]: ATTR_TABLIST
                 });
+                setAttributes(carrouselControlList, {
+                    ['aria-label']: 'Carousel'
+                }); //CWI add 
+				addClass(carrouselControlList, 'clearfix'); //CWI
 
                 // contents
                 let $listCarrouselContent = [].slice.call(carrouselContainer.querySelectorAll('.' + CARROUSEL_CONTENT));
+
+                if ($listCarrouselContent.length <= 1) { //CWI If one or less image containers
+                  return; //CWI exit out of carrousel build
+                }
+
                 $listCarrouselContent
                     .forEach((carrouselContent, indexCarrouselContent) => {
                         let contentId = `${CARROUSEL_CONTENT_ID_PREFIX}${iLisible}_${indexCarrouselContent}`;

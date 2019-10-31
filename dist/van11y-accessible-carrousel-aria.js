@@ -275,11 +275,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             addClass(carrouselControlList, CARROUSEL_CONTROL_LIST);
             addClass(carrouselControlList, prefixClassName + CARROUSEL_CONTROL_LIST_CLASS_SUFFIX);
             setAttributes(carrouselControlList, _defineProperty({}, ATTR_ROLE, ATTR_TABLIST));
+            setAttributes(carrouselControlList, _defineProperty({}, 'aria-label', 'Carousel')); //CWI add
+            addClass(carrouselControlList, 'clearfix'); //CWI
 
             // contents
             var $listCarrouselContent = [].slice.call(carrouselContainer.querySelectorAll('.' + CARROUSEL_CONTENT));
+
+            if ($listCarrouselContent.length <= 1) {
+                //CWI If one or less image containers
+                return; //CWI exit out of carrousel build
+            }
+
             $listCarrouselContent.forEach(function (carrouselContent, indexCarrouselContent) {
-                var _setAttributes7;
+                var _setAttributes8;
 
                 var contentId = '' + CARROUSEL_CONTENT_ID_PREFIX + iLisible + '_' + indexCarrouselContent;
                 var linkId = '' + CARROUSEL_LINK_ID_PREFIX + contentId;
@@ -290,7 +298,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 addClass(carrouselContent, prefixClassName + CARROUSEL_CONTENT_CLASS_SUFFIX);
                 addClass(carrouselContent, CARROUSEL_CONTENT_CLASS_SUFFIX);
 
-                setAttributes(carrouselContent, (_setAttributes7 = {}, _defineProperty(_setAttributes7, ATTR_ROLE, ATTR_TABPANEL), _defineProperty(_setAttributes7, 'id', contentId), _defineProperty(_setAttributes7, ATTR_HIDDEN, isSelected ? 'false' : 'true'), _defineProperty(_setAttributes7, ATTR_LABELLEDBY, linkId), _setAttributes7));
+                setAttributes(carrouselContent, (_setAttributes8 = {}, _defineProperty(_setAttributes8, ATTR_ROLE, ATTR_TABPANEL), _defineProperty(_setAttributes8, 'id', contentId), _defineProperty(_setAttributes8, ATTR_HIDDEN, isSelected ? 'false' : 'true'), _defineProperty(_setAttributes8, ATTR_LABELLEDBY, linkId), _setAttributes8));
 
                 if (carrouselExistingHx !== '') {
                     hx = carrouselContent.querySelector(carrouselExistingHx);
@@ -330,7 +338,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
             // create a button with all attributes
             if (carrouselButtonPreviousText !== '') {
-                var _setAttributes8;
+                var _setAttributes9;
 
                 var carrouselButtonContainerBefore = document.createElement("DIV");
 
@@ -341,11 +349,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
                 // button
                 var carrouselButtonBefore = document.createElement("BUTTON");
-                setAttributes(carrouselButtonBefore, (_setAttributes8 = {}, _defineProperty(_setAttributes8, ATTR_TYPE, ATTR_BUTTON), _defineProperty(_setAttributes8, 'id', CARROUSEL_BUTTON_PREVIOUS + '_' + iLisible), _defineProperty(_setAttributes8, 'title', carrouselButtonPreviousText), _setAttributes8));
+                setAttributes(carrouselButtonBefore, (_setAttributes9 = {}, _defineProperty(_setAttributes9, ATTR_TYPE, ATTR_BUTTON), _defineProperty(_setAttributes9, 'id', CARROUSEL_BUTTON_PREVIOUS + '_' + iLisible), _defineProperty(_setAttributes9, 'title', carrouselButtonPreviousText), _setAttributes9));
                 if (carrouselHideArrowsFocus) {
-                    var _setAttributes9;
+                    var _setAttributes10;
 
-                    setAttributes(carrouselButtonBefore, (_setAttributes9 = {}, _defineProperty(_setAttributes9, ATTR_HIDDEN, true), _defineProperty(_setAttributes9, 'tabindex', '-1'), _setAttributes9));
+                    setAttributes(carrouselButtonBefore, (_setAttributes10 = {}, _defineProperty(_setAttributes10, ATTR_HIDDEN, true), _defineProperty(_setAttributes10, 'tabindex', '-1'), _setAttributes10));
                 }
                 addClass(carrouselButtonBefore, CARROUSEL_BUTTON_PREVIOUS);
                 addClass(carrouselButtonBefore, prefixClassName + CARROUSEL_BUTTON_CLASS_SUFFIX);
@@ -353,10 +361,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 carrouselButtonBefore = carrouselButtonContainerBefore.appendChild(carrouselButtonBefore);
 
                 if (carrouselButtonPreviousImage !== '') {
-                    var _setAttributes10;
+                    var _setAttributes11;
 
                     var carrouselButtonImageBefore = document.createElement("IMG");
-                    setAttributes(carrouselButtonImageBefore, (_setAttributes10 = {}, _defineProperty(_setAttributes10, ATTR_SRC, carrouselButtonPreviousImage), _defineProperty(_setAttributes10, ATTR_ALT, carrouselButtonPreviousTextFlat), _defineProperty(_setAttributes10, ATTR_CLASS, prefixClassName + CARROUSEL_BUTTON_IMG_CLASS_SUFFIX), _setAttributes10));
+                    setAttributes(carrouselButtonImageBefore, (_setAttributes11 = {}, _defineProperty(_setAttributes11, ATTR_SRC, carrouselButtonPreviousImage), _defineProperty(_setAttributes11, ATTR_ALT, carrouselButtonPreviousTextFlat), _defineProperty(_setAttributes11, ATTR_CLASS, prefixClassName + CARROUSEL_BUTTON_IMG_CLASS_SUFFIX), _setAttributes11));
                     carrouselButtonImageBefore = carrouselButtonBefore.appendChild(carrouselButtonImageBefore);
                 } else {
                     carrouselButtonBefore.innerHTML = carrouselButtonPreviousText;
@@ -366,7 +374,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             }
 
             if (carrouselButtonNextText !== '') {
-                var _setAttributes11;
+                var _setAttributes12;
 
                 var carrouselButtonContainerNext = document.createElement("DIV");
 
@@ -377,11 +385,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
                 // button
                 var carrouselButtonNext = document.createElement("BUTTON");
-                setAttributes(carrouselButtonNext, (_setAttributes11 = {}, _defineProperty(_setAttributes11, ATTR_TYPE, ATTR_BUTTON), _defineProperty(_setAttributes11, 'id', CARROUSEL_BUTTON_NEXT + '_' + iLisible), _defineProperty(_setAttributes11, 'title', carrouselButtonNextText), _setAttributes11));
+                setAttributes(carrouselButtonNext, (_setAttributes12 = {}, _defineProperty(_setAttributes12, ATTR_TYPE, ATTR_BUTTON), _defineProperty(_setAttributes12, 'id', CARROUSEL_BUTTON_NEXT + '_' + iLisible), _defineProperty(_setAttributes12, 'title', carrouselButtonNextText), _setAttributes12));
                 if (carrouselHideArrowsFocus) {
-                    var _setAttributes12;
+                    var _setAttributes13;
 
-                    setAttributes(carrouselButtonNext, (_setAttributes12 = {}, _defineProperty(_setAttributes12, ATTR_HIDDEN, true), _defineProperty(_setAttributes12, 'tabindex', '-1'), _setAttributes12));
+                    setAttributes(carrouselButtonNext, (_setAttributes13 = {}, _defineProperty(_setAttributes13, ATTR_HIDDEN, true), _defineProperty(_setAttributes13, 'tabindex', '-1'), _setAttributes13));
                 }
                 addClass(carrouselButtonNext, CARROUSEL_BUTTON_NEXT);
                 addClass(carrouselButtonNext, prefixClassName + CARROUSEL_BUTTON_CLASS_SUFFIX);
@@ -389,10 +397,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 carrouselButtonNext = carrouselButtonContainerNext.appendChild(carrouselButtonNext);
 
                 if (carrouselButtonNextImage !== '') {
-                    var _setAttributes13;
+                    var _setAttributes14;
 
                     var carrouselButtonImageNext = document.createElement("IMG");
-                    setAttributes(carrouselButtonImageNext, (_setAttributes13 = {}, _defineProperty(_setAttributes13, ATTR_SRC, carrouselButtonNextImage), _defineProperty(_setAttributes13, ATTR_ALT, carrouselButtonNextTextFlat), _defineProperty(_setAttributes13, ATTR_CLASS, prefixClassName + CARROUSEL_BUTTON_IMG_CLASS_SUFFIX), _setAttributes13));
+                    setAttributes(carrouselButtonImageNext, (_setAttributes14 = {}, _defineProperty(_setAttributes14, ATTR_SRC, carrouselButtonNextImage), _defineProperty(_setAttributes14, ATTR_ALT, carrouselButtonNextTextFlat), _defineProperty(_setAttributes14, ATTR_CLASS, prefixClassName + CARROUSEL_BUTTON_IMG_CLASS_SUFFIX), _setAttributes14));
                     carrouselButtonImageNext = carrouselButtonNext.appendChild(carrouselButtonImageNext);
                 } else {
                     carrouselButtonNext.innerHTML = carrouselButtonNextText;
